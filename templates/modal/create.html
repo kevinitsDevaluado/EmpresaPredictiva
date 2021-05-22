@@ -1,0 +1,141 @@
+<!-- Modal -->
+<div class="modal fade" id="nuevo_equipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Nuevo Equipo</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+        </div>
+        <form action="{% url 'Equipo_guardar' %}" enctype="multipart/form-data" method="POST" role="form">
+          {% csrf_token %}
+          <div class="modal-body pb-0 text-left">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="form-group">
+                    {{form.codigo.label}}
+                    {{form.codigo}}
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="form-group">
+                      {{form.nombre.label}}
+                      {{form.nombre}}
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="form-group">
+                    {{form.imagen.label}}
+                    {{form.imagen}}
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="form-group">
+                    {{form.esquema.label}}
+                    {{form.esquema}}
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="form-group">
+                    <label class="mb-0">Detalle del equipo</label>
+                      <div class="container pl-3 pr-3 pt-3 pb-3" style="border: 1px solid rgb(190,190,190);">
+                        <div class="form-group">
+                          {{form.area.label}}
+                          {{form.area}}
+                        </div>
+                        <div class="form-group">
+                          {{form.tipo.label}}
+                          {{form.tipo}}
+                        </div>
+                        <div class="form-group">
+                          {{form.potencia.label}}
+                          {{form.potencia}}
+                        </div>
+                        <div class="form-group">
+                          {{form.vel_nominal.label}}
+                          {{form.vel_nominal}}
+                        </div>
+                        <div class="form-group">
+                          {{form.transmision.label}}
+                          {{form.transmision}}
+                        </div>
+                        <div class="form-group">
+                          {{form.carga.label}}
+                          {{form.carga}}
+                        </div>
+                        <div class="form-group">
+                          {{form.vel_operacion.label}}
+                          {{form.vel_operacion}}
+                        </div>
+                        <div class="form-group">
+                          {{form.marca.label}}
+                          {{form.marca}}
+                        </div>
+                        <div class="form-group">
+                          {{form.modelo.label}}
+                          {{form.modelo}}
+                        </div>
+                        <div class="form-group">
+                          {{form.serie.label}}
+                          {{form.serie}}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="form-group">
+                    <label class="mb-0">Datos adicionales</label>
+                    <div class="container pl-3 pr-3 pt-3 pb-3" style="border: 1px solid rgb(190,190,190);">
+                      <div class="form-group">
+                          {{form.estandar.label}}
+                          {{form.estandar}}
+                      </div>
+                      <div class="form-group">
+                          {{form.tolerancia.label}}
+                          {{form.tolerancia}}
+                      </div>
+                      <div class="form-group">
+                        <label class="mb-0">Prioridad de mantenimiento</label>
+                          <div class="container pt-2" style="border: 1px solid rgb(225,225,225);">
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="mantenimiento1" value="P1 Atención inmediata" name="mantenimiento" class="custom-control-input">
+                              <label class="custom-control-label" for="mantenimiento1">P1 Atención inmediata</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="mantenimiento2" value="P2 Planificar mantenimiento" name="mantenimiento" class="custom-control-input">
+                              <label class="custom-control-label" for="mantenimiento2">P2 Planificar mantenimiento</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="mantenimiento3" value="P3 Observar evolución" name="mantenimiento" class="custom-control-input">
+                              <label class="custom-control-label" for="mantenimiento3">P3 Observar evolución</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="mantenimiento4" value="P4 Ninguna" name="mantenimiento" class="custom-control-input">
+                              <label class="custom-control-label" for="mantenimiento4">P4 Ninguna</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="mantenimiento5" value="P5 Fuera de servicio" name="mantenimiento" class="custom-control-input">
+                              <label class="custom-control-label" for="mantenimiento5">P5 Fuera de servicio</label>
+                            </div>
+                          </div>
+                      </div>
+                        <div class="form-group">
+                            {{form.diagnostico.label}}
+                            {{form.diagnostico}}
+                        </div>
+                        <div class="form-group">
+                            {{form.recomendaciones.label}}
+                            {{form.recomendaciones}}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div class="modal fade" id="activar_empleado-{{a.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Activar Empleado</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+        </div>
+        <form action="{% url 'Empleado_activar' a.id %}" enctype="multipart/form-data" method="GET" role="form">
+          {% csrf_token %}
+          <div class="modal-body text-left">
+              Al dar clic en Aceptar, esta cuenta se habilitara.
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-success">Aceptar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

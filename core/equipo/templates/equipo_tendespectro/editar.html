@@ -1,0 +1,28 @@
+<!-- Modal -->
+<div class="modal fade editar_empleado" id="tendespectro_editar-{{a.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Editar Valores de vibración: {{a.id}}</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+        </div>
+        <form action="{% url 'Tendespectro_editar' a.id %}" enctype="multipart/form-data" method="POST" role="form">
+          {% csrf_token %}
+          <div class="modal-body pb-0 text-left">
+              <div class="form-group">
+                  {{form.descripcion.label}}
+                  <input type="text" value="{{a.descripcion}}" name="descripcion" required class="form-control">
+              </div>
+              <div class="form-group">
+                  {{form.imagen.label}}
+                  {{form.imagen}}
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Editar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

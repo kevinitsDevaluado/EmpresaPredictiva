@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block tittlePage %}
+        {{ title }}
+{% endblock tittlePage %}
+<!--CARGAMOS LAS LIBRERIAS DEL DATATABLES-->    
+{% block head %}
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'equipo/list.js' %}"></script>
+
+    
+    {% block head_list %}
+        
+    {% endblock head_list %}
+        
+
+{% endblock head %}
+<!--CONTENIDO PRINCIPAL-->
+{% block contenido %}
+    <div class="card card-default">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-search"></i>
+                
+                {{title}}
+                    
+            </h3>
+        </div>
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead>
+                <!--COLUMNAS-->
+                <tr>
+                    <th>Código</th>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Esquema</th>
+                    <th>Creada_en</th>
+                    <th>Actualizada_en</th>
+                    <th>Estado</th>
+                    <th class="text-center">_____Opciones_____</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--FILAS-->
+                {% block rows %}
+
+                {% endblock %}
+                </tbody>
+            </table>
+        </div>
+        <!-- BOTON AÑADIR -->
+        
+
+        <div class="card-footer">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevo_equipo">Agregar</button>
+            {% include 'modal/create.html' %}
+            <a href=""class="btn btn-success btn-flat btnTest">
+                <i class="fas fa-plus"></i> Actualizar
+            </a>
+        </div>
+        
+
+    </div>
+{% endblock contenido %}
+<!-- javascripts DEL DATATABLE -->
+{% block javascript %}
+    
+    
+{% endblock %}

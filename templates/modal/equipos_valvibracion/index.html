@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% block contenido %}
+<div class="row">
+  <div class="col-sm-10 mb-4 mb-xl-0">
+    <h4 class="font-weight-bold text-dark">Valores de vibración de: {{equipo.codigo}}</h4>
+    <p class="font-weight-normal mb-2 text-muted">Listado de valores de vibración.</p>
+  </div>
+  <div class="col-sm-2 mb-4 mb-xl-0 text-right">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevo_valvibracion">Agregar</button>
+    {% include 'modal/equipos_valvibracion/nuevo.html' %}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive mt-3">
+          <table class="table table-header-bg">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Valor</th>
+                <th>Unidad</th>
+                <th class="text-center">___Opciones___</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if valor_vibracion %}
+              {% for a in valor_vibracion %}
+                <tr>
+                  <td>{{a.id}}</td>
+                  <td>{{a.nombre}}</td>
+                  <td>{{a.fecha}}</td>
+                  <td>{{a.valor}}</td>
+                  <td>{{a.unidad}}</td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#valvibracion_editar-{{a.id}}"><i class="fas fa-pencil-alt"></i></button>
+                    <a href="{% url 'Valvibracion_eliminar' a.id %}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                  </td>
+                </tr>
+                  {% include 'modal/equipos_valvibracion/editar.html' %}
+                {% endfor %}
+                {% else %}
+                <div class="alert alert-info text-center" role="alert">
+                  <p class="mb-0">Aún no existen valores de vibración registrados...</p>
+                </div>
+                {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+
+{% block 'scripts' %}
+<script>
+  $(document).ready(function(){
+    $(".menus").removeClass('active')
+    $(".menu_equipos").addClass('active')
+  })
+</script>
+{% endblock 'scripts' %}

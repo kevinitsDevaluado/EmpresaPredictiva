@@ -1,0 +1,184 @@
+{% extends 'base_admin/base.html' %} 
+{% load staticfiles %}
+{% block 'content' %}
+<div class="row">
+  <div class="col-sm-12 mb-4 mb-xl-0">
+    <h4 class="font-weight-bold text-dark">Editar / Equipo: {{form.codigo.value}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form action="{% url 'Equipo_editar' id_equipo %}" enctype="multipart/form-data" method="POST" role="form">
+        {% csrf_token %}
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                  {{form.codigo.label}}
+                  {{form.codigo}}
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{form.nombre.label}}
+                    {{form.nombre}}
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                  {{form.imagen.label}}
+                  {{form.imagen}}
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                  {{form.esquema.label}}
+                  {{form.esquema}}
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label class="mb-0">Imagen Actual</label><br>
+                    <img src="{{equipo.imagen.url}}" style="height: 170px; width: 170px;" class="img-fluid text-center" alt="No hay una foto de prefil registrada...">
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label class="mb-0">Esquema Actual</label><br>
+                    <img src="{{equipo.esquema.url}}" style="height: 170px; width: 170px;" class="img-fluid text-center" alt="No hay una foto de prefil registrada...">
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label class="mb-0">Detalle del equipo</label>
+                    <div class="container pl-3 pr-3 pt-3 pb-3" style="border: 1px solid rgb(190,190,190);">
+                      <div class="form-group">
+                        {{form.area.label}}
+                        {{form.area}}
+                      </div>
+                      <div class="form-group">
+                        {{form.tipo.label}}
+                        {{form.tipo}}
+                      </div>
+                      <div class="form-group">
+                        {{form.potencia.label}}
+                        {{form.potencia}}
+                      </div>
+                      <div class="form-group">
+                        {{form.vel_nominal.label}}
+                        {{form.vel_nominal}}
+                      </div>
+                      <div class="form-group">
+                        {{form.transmision.label}}
+                        {{form.transmision}}
+                      </div>
+                      <div class="form-group">
+                        {{form.carga.label}}
+                        {{form.carga}}
+                      </div>
+                      <div class="form-group">
+                        {{form.vel_operacion.label}}
+                        {{form.vel_operacion}}
+                      </div>
+                      <div class="form-group">
+                        {{form.marca.label}}
+                        {{form.marca}}
+                      </div>
+                      <div class="form-group">
+                        {{form.modelo.label}}
+                        {{form.modelo}}
+                      </div>
+                      <div class="form-group">
+                        {{form.serie.label}}
+                        {{form.serie}}
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label class="mb-0">Datos adicionales</label>
+                  <div class="container pl-3 pr-3 pt-3 pb-3" style="border: 1px solid rgb(190,190,190);">
+                    <div class="form-group">
+                        {{form.estandar.label}}
+                        {{form.estandar}}
+                    </div>
+                    <div class="form-group">
+                        {{form.tolerancia.label}}
+                        {{form.tolerancia}}
+                    </div>
+                    <div class="form-group">
+                      <label class="mb-0">Prioridad de mantenimiento</label>
+                        <div class="container pt-2" style="border: 1px solid rgb(225,225,225);">
+                          <div class="custom-control custom-radio">
+                          {% if form.mantenimiento.value == 'P1 Atención inmediata' %}
+                            <input type="radio" id="mantenimiento1" value="P1 Atención inmediata" name="mantenimiento" checked class="custom-control-input">
+                          {% else %}
+                            <input type="radio" id="mantenimiento1" value="P1 Atención inmediata" name="mantenimiento" class="custom-control-input">
+                          {% endif %}
+                            <label class="custom-control-label" for="mantenimiento1">P1 Atención inmediata</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                          {% if form.mantenimiento.value == 'P2 Planificar mantenimiento' %}
+                            <input type="radio" id="mantenimiento2" value="P2 Planificar mantenimiento" name="mantenimiento" checked class="custom-control-input">
+                          {% else %}
+                            <input type="radio" id="mantenimiento2" value="P2 Planificar mantenimiento" name="mantenimiento" class="custom-control-input">
+                          {% endif %}
+                            <label class="custom-control-label" for="mantenimiento2">P2 Planificar mantenimiento</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                          {% if form.mantenimiento.value == 'P3 Observar evolución' %}
+                            <input type="radio" id="mantenimiento3" value="P3 Observar evolución" name="mantenimiento" checked class="custom-control-input">
+                          {% else %}
+                            <input type="radio" id="mantenimiento3" value="P3 Observar evolución" name="mantenimiento" class="custom-control-input">
+                          {% endif %}
+                            <label class="custom-control-label" for="mantenimiento3">P3 Observar evolución</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                          {% if form.mantenimiento.value == 'P4 Ninguna' %}
+                            <input type="radio" id="mantenimiento4" value="P4 Ninguna" name="mantenimiento" checked class="custom-control-input">
+                          {% else %}
+                            <input type="radio" id="mantenimiento4" value="P4 Ninguna" name="mantenimiento" class="custom-control-input">
+                          {% endif %}
+                            <label class="custom-control-label" for="mantenimiento4">P4 Ninguna</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                          {% if form.mantenimiento.value == 'P5 Fuera de servicio' %}
+                            <input type="radio" id="mantenimiento5" value="P5 Fuera de servicio" name="mantenimiento" checked class="custom-control-input">
+                          {% else %}
+                            <input type="radio" id="mantenimiento5" value="P5 Fuera de servicio" name="mantenimiento" class="custom-control-input">
+                          {% endif %}
+                            <label class="custom-control-label" for="mantenimiento5">P5 Fuera de servicio</label>
+                          </div>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                          {{form.diagnostico.label}}
+                          {{form.diagnostico}}
+                      </div>
+                      <div class="form-group">
+                          {{form.recomendaciones.label}}
+                          {{form.recomendaciones}}
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Actualizar Información</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock 'content' %}
+{% block 'scripts' %}
+<script>
+  $(document).ready(function(){
+    $(".menus").removeClass('active')
+    $(".menu_equipos").addClass('active')
+  })
+</script>
+{% endblock 'scripts' %}

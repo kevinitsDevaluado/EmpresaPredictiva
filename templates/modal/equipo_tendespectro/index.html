@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% block contenido %}
+<div class="row">
+  <div class="col-sm-10 mb-4 mb-xl-0">
+    <h5 class="font-weight-bold text-dark">Tendencia de vibración y espectros relevantes de: {{equipo.codigo}}</h4>
+    <p class="font-weight-normal mb-2 text-muted">Listado de tendencias de vibración.</p>
+  </div>
+  <div class="col-sm-2 mb-4 mb-xl-0 text-right">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevo_tendespectro">Agregar</button>
+    {% include 'modal/equipo_tendespectro/nuevo.html' %}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          {% if tendespectro %}
+            {% for a in tendespectro %}
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+              <div class="card text-center">
+                <img src="{{a.imagen.url}}" class="card-img-top w-100" alt="...">
+                <div class="card-body">
+                  <p class="card-text">{{a.descripcion}}</p>
+                  <button data-toggle="modal" data-target="#tendespectro_editar-{{a.id}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                  <button data-toggle="modal" data-target="#tendespectro_eliminar-{{a.id}}" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+            </div>
+            {% include 'modal/equipo_tendespectro/editar.html' %}
+            {% include 'modal/equipo_tendespectro/eliminar.html' %}
+            {% endfor %}
+          {% else %}
+            <div class="col-12">
+              <div class="alert alert-info text-center" role="alert">
+                <p>Aún no hay tendencias de vibración registradas...</p>
+              </div>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+{% block 'scripts' %}
+<script>
+  $(document).ready(function(){
+    $(".menus").removeClass('active')
+    $(".menu_equipos").addClass('active')
+  })
+</script>
+{% endblock 'scripts' %}

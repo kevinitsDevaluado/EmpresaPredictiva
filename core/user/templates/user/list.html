@@ -1,0 +1,36 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block tittlePage %}
+        {{ title }}
+{% endblock tittlePage %}
+{% block head_list %}
+    <script src="{% static 'user/js/list.js' %}"></script>
+{% endblock %}
+
+{% block columns %}
+    <tr>
+        <th scope="col">Nro</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Username</th>
+        <th scope="col">Fecha de registro</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Grupos</th>
+        <th class="text-center">_____Opciones_____</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+{% include 'administrador/empleados/activar.html' %}
+{% include 'administrador/empleados/desactivar.html' %}
+{% include 'administrador/empleados/editar.html' %}
+{% block javascript %}
+<script>
+    $(document).ready(function(){
+      $(".menus").removeClass('active')
+      $(".menu_usuarios").addClass('active')
+      $(".menu_empleados").addClass('active')
+    })
+  </script>
+{% endblock %}

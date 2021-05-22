@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% block contenido %}
+<div class="row">
+    <div class="col-sm-10 mb-4 mb-xl-0">
+      <h4 class="font-weight-bold text-dark">Equipos</h4>
+      <p class="font-weight-normal mb-2 text-muted">Listado de equipos de Predictiva.</p>
+    </div>
+    <div class="col-sm-2 mb-4 mb-xl-0 text-right">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevo_equipo">Agregar</button>
+                  {% include 'modal/create.html' %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive mt-3">
+            <table class="table table-header-bg">
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Usuario</th>
+                  <th>Nombre</th>
+                  <th>Esquema</th>
+                  <th>Creada_en</th>
+                  <th>Actualizada_en</th>
+                  <th>Estado</th>
+                  <th class="text-center">_____________Opciones_____________</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if equipos %}
+                {% for a in equipos %}
+                  <tr>
+                    <td>{{a.codigo}}</td>
+                    <td class="font-weight-bold">{{a.id_auth_user.username}}</td>
+                    <td>{{a.nombre}}</td>
+                    <td>{{a.estandar}}</td>
+                    <td>{{a.creada_en}}</td>
+                    <td>{{a.actualizada_en}}</td>
+                    {% if a.estado == 1 %}
+                    <td class="font-weight-bold" style="color: #16c79a;">Activo</td>
+                    {% else %}
+                    <td class="font-weight-bold" style="color: red;">Inactivo</td>
+                    {% endif %}
+                    <td class="text-center">
+                      <a href="{% url 'vista_editar' a.id %}" title="Editar equipo" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                      <a href="{% url 'Equipo_valores_vibracion' a.id %}" title="Valores de Vibración" class="btn btn-info"><i class="fas fa-table"></i></a>
+                      <a href="{% url 'Equipo_tendencia_espectro' a.id %}" title="Tendencia de espectro" class="btn btn-info"><i class="fas fa-boxes"></i></a>
+                      <a type="button" class="btn btn-secondary" href="{% url 'sale_invoice_pdf' a.id %}" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#activar_tendespectro-{{a.id}}"><i class="fas fa-check"></i></button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#desactivar_tendespectro-{{a.id}}"><i class="fas fa-times"></i></button>
+                    </td>
+                  </tr>
+                  {% include 'modal/activar.html' %}
+                  {% include 'modal/desactivar.html' %}
+                  {% endfor %}
+                  {% else %}
+                  <div class="alert alert-info text-center" role="alert">
+                    <p class="mb-0">Aún no existen equipos registrados...</p>
+                  </div>
+                  {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock contenido %}
+
+{% block 'scripts' %}
+
+{% endblock 'scripts' %}
